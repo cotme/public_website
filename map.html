@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSV Map Plotter</title>
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+    <!-- PapaParse for CSV loading -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+let map;
+
+function initMap() {
+  // Initialize the map
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 39.5, lng: -98.35 }, // roughly center of continental US
+    zoom: 4,
+  });
+
+  // URL of your hosted CSV file
+  const csvUrl = "https://example.com/path/to/data.csv";
+
+  // Create ONE shared info window
+  const infoWindow = new google.maps.InfoWindow();
+
+  // Close info window when clicking elsewhere on the map
+  map.addListener("click", () => {
+    infoWindow.close();
+  });
+
+  // Parse CSV and plot markers
+  Papa.parse(csvUrl, {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function (results) {
+      results.data.forEach((row) => {
+        const lat = parseFloat(row.Latitude);
+        const lng = parseFloat(row.Longitude);
+
+        if (!isNaN(lat) && !isNaN(lng)) {
+          const marker = new google.maps.Marker({
+            position: { lat, lng },
+            map: map,
+            title: row.Name || "Unnamed location",
+          });
+
+          const infoHtml = `
+            <div class="info-content">
+              <h3>${row.Name || "Unnamed"}</h3>
+              <p>${row.Enrollment_HC || ""}</p>
+            //   ${row.extra ? `<p><strong>Extra:</strong> ${row.extra}</p>` : ""}
+            </div>
+          `;
+
+          marker.addListener("click", () => {
+            infoWindow.setContent(infoHtml);
+            infoWindow.open(map, marker);
+          });
+        }
+      });
+    },
+  });
+}
+
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmyZjAxHjl77JcgaR_wtug3PlBz22GIgc&callback=initMap"></script>
+  </body>
+</html>
