@@ -26,7 +26,7 @@ function initMap() {
   });
 
   // URL of your hosted CSV file
-  const csvUrl = "https://example.com/path/to/data.csv";
+  const csvUrl = "data.csv";
 
   // Create ONE shared info window
   const infoWindow = new google.maps.InfoWindow();
@@ -56,8 +56,10 @@ function initMap() {
           const infoHtml = `
             <div class="info-content">
               <h3>${row.Name || "Unnamed"}</h3>
-              <p>${row.Enrollment_HC || ""}</p>
-            //   ${row.extra ? `<p><strong>Extra:</strong> ${row.extra}</p>` : ""}
+              <p>Students: HC: ${row.Enrollment_HC || ""} FTE: ${row.Enrollment_FTE || ""}</p>
+              <p>Faculty: HC: ${row.Faculty_HC || ""} FTE: ${row.Faculty_FTE || ""}</p>
+              <p>Endowment: ${row.LT_Invest || ""}</p>
+              <p><em>${row.Denomination || ""}</em></p>
             </div>
           `;
 
@@ -73,6 +75,6 @@ function initMap() {
 
     </script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmyZjAxHjl77JcgaR_wtug3PlBz22GIgc&callback=initMap"></script>
   </body>
 </html>
