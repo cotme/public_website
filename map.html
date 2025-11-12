@@ -36,6 +36,11 @@ function initMap() {
     infoWindow.close();
   });
 
+const categoryColors = {
+  "ATS": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+  "ABHE": "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+  };
+
   // Parse CSV and plot markers
   Papa.parse(csvUrl, {
     download: true,
@@ -47,10 +52,13 @@ function initMap() {
         const lng = parseFloat(row.Longitude);
 
         if (!isNaN(lat) && !isNaN(lng)) {
+          const iconURL = categoryColors[row.Accreditor] || "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+
           const marker = new google.maps.Marker({
             position: { lat, lng },
             map: map,
             title: row.Name || "Unnamed location",
+            icon: iconURL, 
           });
 
           const infoHtml = `
