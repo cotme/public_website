@@ -1,4 +1,4 @@
-Name,Column 16,Latitude,Longitude,Accreditor,Status,IUC,Race,State,Denomination,Expenditure,LT Invest,Faculty FT,Faculty_FTE,Enrollment HC,Enrollment_FTE,MDiv Tuitition
+Name,Column 16,Latitude,Longitude,Accreditor,Status,IUC,Race,State,Denomination,Expenditure,LT_Invest,Faculty_FT,Faculty_FTE,Enrollment_HC,Enrollment_FTE,MDiv Tuitition
 Liberty Theological Seminary,,37.352612,-79.179062,ATS,ACCRED,U,W,VA,Baptist,21271,0,24,1509,6168,4568,5799
 Southern Baptist Theological Seminary,"38.24826807186994, -85.68595543001062",38.24826807,-85.68595543,ATS,ACCRED,I,W,KY,Southern Baptist Convention,50351,113.1,47,58,3371,1813,9430
 Midwestern Baptist Theological Seminary,"39.18502065736056, -94.57448484847147",39.18502066,-94.57448485,ATS,ACCRED,I,W,MO,Southern Baptist Convention,27929,38.3,31,32,2909,1554,8400
