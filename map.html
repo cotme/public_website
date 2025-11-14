@@ -63,7 +63,7 @@ const categoryColors = {
 
           const infoHtml = `
             <div class="info-content">
-              <h3>${row.Name || "Unnamed"}</h3>
+              <h3><a href="${row.Website || ""}" target="new">${row.Name || "Unnamed"}</a></h3>
               <p>Students: HC: ${row.Enrollment_HC || ""} FTE: ${row.Enrollment_FTE || ""}</p>
               <p>Faculty: FT: ${row.Faculty_FT || ""} FTE: ${row.Faculty_FTE || ""}</p>
               <p>Endowment: ${row.LT_Invest || ""}</p>
